@@ -59,20 +59,23 @@ Luego, el componente ProductProvider actúa como el proveedor del contexto Produ
 Para esto, vamos a utilizar una página llamada "Fake Store API". Desde aquí obtendremos los datos de los productos.
 
 ``` JavaScript
-// products state
-const [products, setProducts] = useState([])
-// fetch products
-useEffect(()=>{
-  const fetchProducts = async () => {
-    const response = await fetch("https://fakestoreapi.com/products")
-    const data = response.json()
-    setProducts(data)
-  }
-  fetchProducts()
-}, [])
-
 const ProductProvider = ({ children }) => {
-  return <ProductContext.Provider value={{ products }}>{children}</ProductContext.Provider>;
+  // products state
+  const [products, setProducts] = useState([]);
+  // fetch products
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch("https://fakestoreapi.com/products");
+      const data = response.json();
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
+  return (
+    <ProductContext.Provider value={{ products }}>
+      {children}
+    </ProductContext.Provider>
+  );
 };
 ```
 
