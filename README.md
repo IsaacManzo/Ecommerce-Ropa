@@ -66,11 +66,12 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch("https://fakestoreapi.com/products");
-      const data = response.json();
+      const data = await response.json();
       setProducts(data);
     };
     fetchProducts();
   }, []);
+  
   return (
     <ProductContext.Provider value={{ products }}>
       {children}
