@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
-const ProductContext = () => {
-  return <div>ProductContext</div>;
+// create context
+export const ProductContext = createContext();
+
+const ProductProvider = ({ children }) => {
+  return <ProductContext.Provider>{children}</ProductContext.Provider>;
 };
 
 export default ProductContext;
